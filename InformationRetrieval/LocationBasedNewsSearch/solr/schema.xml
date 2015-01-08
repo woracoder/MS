@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="WikiNews" version="1.2">
+<types>
+<fieldType name="TEXT" class="solr.TextField" >
+<analyzer>
+<tokenizer class="solr.StandardTokenizerFactory"/>
+<filter class="solr.LowerCaseFilterFactory"/>
+<!--<filter class="solr.PorterStemFilterFactory"/>-->
+</analyzer>
+</fieldType>
+
+<fieldType name="TEXT_ID" class="solr.TextField" >
+<analyzer>
+<tokenizer class="solr.KeywordTokenizerFactory"/>
+</analyzer>
+</fieldType>
+
+<fieldType name="WIKITEXT" class="solr.TextField" >
+<analyzer type="index">
+<tokenizer class="solr.WikipediaTokenizerFactory"/>
+<!--Abhishek Start -->
+<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+<filter class="solr.LowerCaseFilterFactory"/>
+<!--<filter class="solr.PorterStemFilterFactory"/> -->
+<filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+<!--Abhishek End--> 
+</analyzer>
+<analyzer type="query">
+<tokenizer class="solr.StandardTokenizerFactory"/>
+<!--Abhishek Start-->
+<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+<filter class="solr.LowerCaseFilterFactory"/>
+<!--<filter class="solr.PorterStemFilterFactory"/>-->
+<filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+<!--Abhishek End-->
+</analyzer>
+</fieldType>
+
+<fieldType name="HTMLTEXT" class="solr.TextField" >
+<analyzer type="index">
+	<charFilter class="solr.HTMLStripCharFilterFactory"/>
+	<tokenizer class="solr.StandardTokenizerFactory"/>
+
+</analyzer>
+</fieldType>
+
+<fieldType name="DATE" class="solr.TrieDateField" sortMissingLast="true" omitNorms="true"/>
+
+<fieldType name="long" class="solr.TrieLongField"/>
+<fieldType name="double" class="solr.TrieDoubleField"/>
+<fieldType name="LOCATION" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+
+ <fieldType name="location_rpt"   class="solr.SpatialRecursivePrefixTreeFieldType"
+               spatialContextFactory="com.spatial4j.core.context.jts.JtsSpatialContextFactory"
+               distErrPct="0.025"
+               maxDistErr="0.000009"
+               units="degrees"
+            />
+			
+			
+<!--Abhishek Start-->
+<fieldType name="text_general_rev" class="solr.TextField" >
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.ReversedWildcardFilterFactory" withOriginal="true"
+           maxPosAsterisk="3" maxPosQuestion="2" maxFractionAsterisk="0.33"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+<!--Abhishek End-->			
+
+</types>
+<fields>
+<field name="id" type="TEXT_ID" indexed="true" stored="true" multiValued="false"/>
+<field name="title" type="TEXT" indexed="true" stored="true" multiValued="false" termVectors="true"/> 
+<field name="timestamp" type="DATE" indexed="true" stored="true" multiValued="false" />
+<field name="text" type="WIKITEXT" indexed="true" stored="true" multiValued="false" termVectors="true"/>
+<field name="htmltext" type="HTMLTEXT" indexed="true" stored="true" multiValued="false"/>
+<field name="location_hierarchy" type="TEXT" indexed="true" stored="true" multiValued="false" termVectors="true"/>
+<field name="location" type="TEXT" indexed="true" stored="true" multiValued="true"/>
+<field name="suggestField" type="TEXT" indexed="true" stored="true" multiValued="true" />
+<field name="_version_" type="long" indexed="true" stored="true" multiValued="false"/>
+<!--Abhishek Start-->
+<field name="text_rev" type="text_general_rev" indexed="true" stored="false" multiValued="false"/>
+<!--Abhishek Ends-->
+<dynamicField name="*_location" type="location_rpt" indexed="true" stored="true" multiValued="true"/>
+<dynamicField name="*_coordinate"  type="double" indexed="true"  stored="false" multiValued="false"/>
+</fields>
+
+<copyField source="title" dest="suggestField"/>
+<copyField source="htmltext" dest="suggestField"/>
+<copyField source="text" dest="text_rev"/> 
+
+<uniqueKey>id</uniqueKey>
+
+<defaultSearchField>suggestField</defaultSearchField>
+<solrQueryParser defaultOperator="OR"/>
+
+</schema>
+
+
+
+
+
+

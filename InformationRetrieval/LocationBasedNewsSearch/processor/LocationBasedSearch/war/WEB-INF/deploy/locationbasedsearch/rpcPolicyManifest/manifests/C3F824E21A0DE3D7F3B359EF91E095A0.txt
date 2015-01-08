@@ -1,0 +1,2 @@
+serviceClass: com.ir.lbs.client.QueryParserService
+path: 94CA86B8FDAC7617E9631F71D29501CB.gwt.rpc

@@ -1,0 +1,633 @@
+package com.ir.lbs.server;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import nsidc.spheres.LatLonBoundingBox;
+import nsidc.spheres.Point;
+
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.response.FacetField;
+import org.apache.solr.client.solrj.response.FacetField.Count;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.client.solrj.response.SpellCheckResponse;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.params.ModifiableSolrParams;
+
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.ir.lbs.client.QueryParserService;
+import com.ir.lbs.client.geonames.Style;
+import com.ir.lbs.client.geonames.Toponym;
+import com.ir.lbs.client.geonames.ToponymSearchCriteria;
+import com.ir.lbs.client.geonames.ToponymSearchResult;
+import com.ir.lbs.client.geonames.WebService;
+import com.ir.lbs.shared.Constants;
+
+/**
+ * The server-side implementation of the RPC service.
+ */
+@SuppressWarnings("serial")
+public class QueryParserServiceImpl extends RemoteServiceServlet implements
+		QueryParserService {
+	
+	private Double latitude = 0.0;
+	private Double longitude = 0.0;
+	private String location = "";
+	private String county = "";
+	private String state = "";
+	private String country = "";
+	private String continent = "";
+	private String locationType = "earth";
+	private Double north = 0.0;
+	private Double west = 0.0;
+	private Double east = 0.0;
+	private Double south = 0.0;
+	
+	// private final static String GEONAMES_USERNAME = "vzanpure";
+	// private final static String SOLR_BASE_URL = "http://localhost:8983/solr";
+
+	public List<List<String>> parseQuery(String keywordQuery, String locationQuery, String distanceRange, String startOffset,String filter) throws IllegalArgumentException {
+		// Step 1: Call Geonames Webservices and fetch the latitude, longitude and hierarchy
+		WebService.setUserName(Constants.GEONAMES_USERNAME);
+		List<List<String>> documents = new ArrayList<List<String>>();
+		
+		ToponymSearchCriteria searchCriteria = new ToponymSearchCriteria();
+		searchCriteria.setQ(locationQuery);
+		searchCriteria.setStyle(Style.FULL);
+		searchCriteria.setMaxRows(1); // We only retrieve the first result and use it...
+		List<String> resultStats = new ArrayList<String>();
+		
+		SolrServer solrServer = null;
+		
+		try {
+			ToponymSearchResult result = WebService.search(searchCriteria);
+			
+			if (result.getTotalResultsCount() > 0) {
+				
+				Toponym locationToponym = result.getToponyms().get(0);
+				
+				System.out.println("Bounding Box : " + locationToponym.getBoundingBox().getNorth() + "/" + locationToponym.getBoundingBox().getEast() + "/" + locationToponym.getBoundingBox().getSouth() + "/" + locationToponym.getBoundingBox().getWest());
+				
+				north = locationToponym.getBoundingBox().getNorth();
+				west = locationToponym.getBoundingBox().getWest();
+				east = locationToponym.getBoundingBox().getEast();
+				south = locationToponym.getBoundingBox().getSouth();
+				
+				setLocation(locationToponym.getName());
+				setLatitude(locationToponym.getLatitude());
+				setLongitude(locationToponym.getLongitude());
+				
+				List<Toponym> locationHierarchy = WebService.hierarchy(locationToponym.getGeoNameId(), Constants.GEONAMES_USERNAME, Style.MEDIUM);
+				
+				String tempLocationName = "";
+				
+				for (int index = 1; index < locationHierarchy.size(); index++) {
+					tempLocationName = locationHierarchy.get(index).getName();
+					
+					if (index == 1) {
+						setContinent(tempLocationName);
+						locationType = "continent";
+					} else if (index == 2) {
+						setCountry(tempLocationName);
+						locationType = "country";
+					} else if (index == 3) {
+						setState(tempLocationName);
+						locationType = "state";
+					} else if (index == 4) {
+						setCounty(tempLocationName);
+						locationType = "county";
+					} else {
+						setLocation(tempLocationName);
+						locationType = "city";
+					}
+				}
+				
+				// Step 2: Setup Solr instance....
+				solrServer = new HttpSolrServer(Constants.SOLR_BASE_URL + Constants.CORE);
+				
+				
+				// Step 3: Formulate the query and execute it...
+				ModifiableSolrParams solrQuery = new ModifiableSolrParams();
+				
+				solrQuery.set("q", keywordQuery/* + " \"" + locationQuery + "\"^0.3"*/);
+				solrQuery.set("defType", "synonym_edismax");
+				solrQuery.set("synonyms", Boolean.TRUE);
+				solrQuery.set("synonyms.originalBoost", 2);
+				solrQuery.set("boost","recip(ms(NOW,timestamp),3.16e-11,1,1)");
+				solrQuery.set("qf", "title^2.0 text^1.1");
+				solrQuery.set("pf", "title ^2.3 text 1.8");
+				
+				// fq={!geofilt pt=45.15,-93.85 sfield=geo d=5}
+				
+				solrQuery.set("pt", getLatitude() + ", " + getLongitude());
+				
+				if (null != distanceRange && !distanceRange.equals("")) {
+					solrQuery.set("d", distanceRange);
+				}
+				String filterquery;
+				solrQuery.set("sfield", locationType + "_location");
+				
+				solrQuery.set("bf", "recip(geodist(),2,200,20)");
+				solrQuery.set("sort", "score desc");
+				// solrQuery.set("fq", "{!bbox}");
+				filterquery="{!geofilt}";
+				solrQuery.set("hl", Boolean.TRUE);
+				solrQuery.set("hl.fl", "htmltext");
+				solrQuery.set("start", startOffset);
+				solrQuery.set("rows", Constants.ROWS);
+				solrQuery.set("facet", Boolean.TRUE);
+				solrQuery.set("facet.date", "timestamp");
+				solrQuery.set("facet.date.start", "2001-01-01T00:00:00Z");
+				solrQuery.set("facet.date.end", "2013-01-01T00:00:00Z");
+				solrQuery.set("facet.date.gap", "+1MONTH");
+				solrQuery.set("facet.mincount", "1");
+			//	solrQuery.s
+				if(!filter.equals(""))
+				{
+					filterquery=filterquery+"@##"+filter;
+					//solrQuery.set("fq", filter);
+				}
+				solrQuery.set("fq",filterquery.split("@##"));
+				
+											
+				//&facet=true&facet.date=timestamp&facet.date.start=2001-01-01T00:00:00Z&facet.date.end=2010-01-01T00:00:00Z&facet.date.gap=%2B365DAY
+				
+				System.out.println(solrQuery.toString());
+				QueryResponse response = solrServer.query(solrQuery);
+				resultStats.add(String.valueOf(response.getElapsedTime()));
+				
+				
+				// System.out.println("Response = " + response);
+				
+				SolrDocumentList documentList = response.getResults();
+				List<FacetField> dates =  response.getFacetDates();
+				
+				String dateFacetRes = "" ; 
+				
+				for(FacetField fl: dates )
+				{
+					List<Count> c  =  fl.getValues();
+					
+					for(Count c1 : c  )
+					{
+						dateFacetRes = dateFacetRes + "*" + c1.getName() + "*" + String.valueOf(c1.getCount());	
+					}
+					
+							
+					break;
+				}
+				
+			
+				System.out.println("Number of Results Found : " + String.valueOf(documentList.getNumFound()));
+				resultStats.add(String.valueOf(documentList.getNumFound()));
+				documents.add(resultStats);
+				
+				Map<String, Map<String, List<String>>> highlightingResultsMap = response.getHighlighting();
+				
+				String docId = "";
+				
+				Set<String> boundingBoxLocations = new HashSet<String>();
+				List<String> latlngLocations = new ArrayList<String>();
+				
+				for (SolrDocument solrDocument : documentList) {
+					List<String> document = new ArrayList<String>();
+					// System.out.println(solrDocument.getFieldValue("text"));
+					
+					
+					docId = String.valueOf(solrDocument.getFieldValue("id"));
+					
+					document.add(docId);
+					document.add(String.valueOf(solrDocument.getFieldValue("title")));
+					
+					for (String field : highlightingResultsMap.get(docId).keySet()) {
+						List<String> highlightedPart = highlightingResultsMap.get(docId).get(field);
+						// System.out.println("*********************");
+						String highlightedText = "";
+						for (String text : highlightedPart) {
+							highlightedText = highlightedText + text;
+						}
+						
+						highlightedText = highlightedText.replaceAll("[\\s]+", " ");
+						// System.out.println(highlightedText);
+						document.add(highlightedText);
+					}
+					
+					document.add(getLatitude() + "/" + getLongitude());
+					
+					boundingBoxLocations.addAll(fetchLocationsWithinBoundingBox(solrDocument, distanceRange));
+					
+					documents.add(document);
+				}
+				
+				// add facet results
+				
+				List<String> facetdoc  = new ArrayList<String>();
+				facetdoc.add("datefacet");
+				facetdoc.add("-1");
+				if(dateFacetRes.length()>0)
+				{
+				facetdoc.add(dateFacetRes.substring(1));
+				documents.add(facetdoc);
+				}
+				
+				latlngLocations.add("latlnglocations");
+				for (String locPoint : boundingBoxLocations) {
+					System.out.println(locPoint);
+					latlngLocations.add(locPoint);
+				}
+				
+				documents.add(latlngLocations);
+				
+				
+			} else {
+				
+				solrServer = new HttpSolrServer(Constants.SOLR_BASE_URL + Constants.CORE);
+				
+				
+				// Step 3: Formulate the query and execute it...
+				ModifiableSolrParams solrQuery = new ModifiableSolrParams();
+				
+				solrQuery.set("q", "suggestField:" + keywordQuery + " AND location:\"" + locationQuery + "\"^0.3");
+				solrQuery.set("defType", "synonym_edismax");
+				solrQuery.set("synonyms", Boolean.TRUE);
+				solrQuery.set("synonyms.originalBoost", 2);
+				solrQuery.set("qf", "title^2.0 text^1.1");
+				solrQuery.set("pf", "title ^2.3 text 1.8");
+				solrQuery.set("boost","recip(ms(NOW,timestamp),3.16e-11,1,1)");				
+				
+				// fq={!geofilt pt=45.15,-93.85 sfield=geo d=5}
+				
+//				solrQuery.set("pt", getLatitude() + ", " + getLongitude());
+				
+//				if (null != distanceRange && !distanceRange.equals("")) {
+//					solrQuery.set("d", distanceRange);
+//				}
+				String filterquery="";
+//				solrQuery.set("sfield", locationType + "_location");
+//				
+//				solrQuery.set("bf", "recip(geodist(),2,200,20)");
+				solrQuery.set("sort", "score desc");
+				// solrQuery.set("fq", "{!bbox}");
+				//filterquery="{!geofilt}";
+				solrQuery.set("hl", Boolean.TRUE);
+				solrQuery.set("hl.fl", "htmltext");
+				solrQuery.set("start", startOffset);
+				solrQuery.set("rows", Constants.ROWS);
+				solrQuery.set("facet", Boolean.TRUE);
+				solrQuery.set("facet.date", "timestamp");
+				solrQuery.set("facet.date.start", "2001-01-01T00:00:00Z");
+				solrQuery.set("facet.date.end", "2013-01-01T00:00:00Z");
+				solrQuery.set("facet.date.gap", "+1MONTH");
+				solrQuery.set("facet.mincount", "1");
+			//	solrQuery.s
+				if(!filter.equals(""))
+				{
+					filterquery=filter;
+					//solrQuery.set("fq", filter);
+				}
+				solrQuery.set("fq",filterquery.split("@##"));
+				
+											
+				//&facet=true&facet.date=timestamp&facet.date.start=2001-01-01T00:00:00Z&facet.date.end=2010-01-01T00:00:00Z&facet.date.gap=%2B365DAY
+				
+				System.out.println(solrQuery.toString());
+				QueryResponse response = solrServer.query(solrQuery);
+				resultStats.add(String.valueOf(response.getElapsedTime()));
+				
+				
+				// System.out.println("Response = " + response);
+				
+				SolrDocumentList documentList = response.getResults();
+				List<FacetField> dates =  response.getFacetDates();
+				
+				String dateFacetRes = "" ; 
+				
+				for(FacetField fl: dates )
+				{
+					List<Count> c  =  fl.getValues();
+					
+					for(Count c1 : c  )
+					{
+						dateFacetRes = dateFacetRes + "*" + c1.getName() + "*" + String.valueOf(c1.getCount());	
+					}
+					
+							
+					break;
+				}
+				
+			
+				System.out.println("Number of Results Found : " + String.valueOf(documentList.getNumFound()));
+				resultStats.add(String.valueOf(documentList.getNumFound()));
+				documents.add(resultStats);
+				
+				Map<String, Map<String, List<String>>> highlightingResultsMap = response.getHighlighting();
+				
+				String docId = "";
+				
+				Set<String> boundingBoxLocations = new HashSet<String>();
+				List<String> latlngLocations = new ArrayList<String>();
+				
+				for (SolrDocument solrDocument : documentList) {
+					List<String> document = new ArrayList<String>();
+					// System.out.println(solrDocument.getFieldValue("text"));
+					
+					
+					docId = String.valueOf(solrDocument.getFieldValue("id"));
+					
+					document.add(docId);
+					document.add(String.valueOf(solrDocument.getFieldValue("title")));
+					
+					for (String field : highlightingResultsMap.get(docId).keySet()) {
+						List<String> highlightedPart = highlightingResultsMap.get(docId).get(field);
+						// System.out.println("*********************");
+						String highlightedText = "";
+						for (String text : highlightedPart) {
+							highlightedText = highlightedText + text;
+						}
+						
+						highlightedText = highlightedText.replaceAll("[\\s]+", " ");
+						// System.out.println(highlightedText);
+						document.add(highlightedText);
+					}
+					
+					document.add(getLatitude() + "/" + getLongitude());
+					
+					boundingBoxLocations.addAll(fetchLocationsWithinBoundingBox(solrDocument, distanceRange));
+					
+					documents.add(document);
+				}
+				
+				// add facet results
+				
+				List<String> facetdoc  = new ArrayList<String>();
+				facetdoc.add("datefacet");
+				facetdoc.add("-1");
+				if(dateFacetRes.length()>0)
+				{
+				facetdoc.add(dateFacetRes.substring(1));
+				documents.add(facetdoc);
+				}
+				
+				latlngLocations.add("latlnglocations");
+				for (String locPoint : boundingBoxLocations) {
+					System.out.println(locPoint);
+					latlngLocations.add(locPoint);
+				}
+				
+				documents.add(latlngLocations);
+
+				
+				
+				
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (null != solrServer) {
+				solrServer.shutdown();
+			}
+		}
+		return documents;
+	}
+
+	private Set<String> fetchLocationsWithinBoundingBox(SolrDocument solrDocument, String distanceRange) {
+		
+		Set<String> latlngSet = new HashSet<String>();
+		
+		if (locationType.equalsIgnoreCase("country")) {
+			
+			updatedLatLngSetValues(solrDocument.getFieldValues("country_location"), latlngSet, distanceRange);
+			updatedLatLngSetValues(solrDocument.getFieldValues("state_location"), latlngSet, distanceRange);
+			updatedLatLngSetValues(solrDocument.getFieldValues("county_location"), latlngSet, distanceRange);
+			updatedLatLngSetValues(solrDocument.getFieldValues("city_location"), latlngSet, distanceRange);
+			
+			
+		} else if (locationType.equalsIgnoreCase("state")) {
+			
+			updatedLatLngSetValues(solrDocument.getFieldValues("state_location"), latlngSet, distanceRange);
+			updatedLatLngSetValues(solrDocument.getFieldValues("county_location"), latlngSet, distanceRange);
+			updatedLatLngSetValues(solrDocument.getFieldValues("city_location"), latlngSet, distanceRange);
+			
+		} else if (locationType.equalsIgnoreCase("county")) {
+			
+			updatedLatLngSetValues(solrDocument.getFieldValues("county_location"), latlngSet, distanceRange);
+			updatedLatLngSetValues(solrDocument.getFieldValues("city_location"), latlngSet, distanceRange);
+			
+		} else if (locationType.equalsIgnoreCase("city")) {
+			
+			updatedLatLngSetValues(solrDocument.getFieldValues("city_location"), latlngSet, distanceRange);
+			
+		}
+		return latlngSet;
+	}
+
+	private void updatedLatLngSetValues(Collection<Object> locValues, Set<String> latlngSet, String distanceRange) {
+		// TODO Auto-generated method stub
+		
+		if (null != locValues) {
+
+			for (Object object : locValues) {
+
+				if (!latlngSet.contains(String.valueOf(object))) {
+					//String latlng = String.valueOf(object);
+					String [] latlng = String.valueOf(object).split(",");
+					Double lat = Double.valueOf(latlng[0].trim());
+					Double lng = Double.valueOf(latlng[1].trim());
+					
+					// Check if latitude lies in between the east and west points...
+					if (isWithinBox(lat, lng, distanceRange)) {
+						
+						latlngSet.add(String.valueOf(object));
+					}
+					
+					// latlngSet.add(String.valueOf(object).trim());
+
+				}
+			}
+		}
+	}
+
+	private boolean isWithinBox(Double lat, Double lng, String distanceRange) {
+		
+		/*if ((east < west && east <= lat && lat <= west) || (west < east && west <= lat && lat <= east)) {
+			
+			if ((north < south && north <= lng && lng <= south) || (south < north && south <= lng && lng <= north)) {
+				return true;
+			}
+			
+		}*/
+		
+		Double d = Double.valueOf(distanceRange);
+		
+		GeoLocation geoLocation = GeoLocation.fromDegrees(getLatitude(), getLongitude());
+		
+		GeoLocation [] bbox = geoLocation.boundingCoordinates(d, 6371.01d);
+		
+		// LatLonBoundingBox boundingBox = new LatLonBoundingBox(south, north, west, east);
+		LatLonBoundingBox boundingBox = new LatLonBoundingBox(bbox[0].getLatitudeInDegrees(), bbox[1].getLatitudeInDegrees(), bbox[0].getLongitudeInDegrees(), bbox[1].getLatitudeInDegrees());
+		Point point = new Point(lat, lng);
+		
+		return boundingBox.contains(point);
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(double d) {
+		this.latitude = d;
+	}
+
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(double d) {
+		this.longitude = d;
+	}
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+	public String getCounty() {
+		return county;
+	}
+
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public String getContinent() {
+		return continent;
+	}
+
+
+	public void setContinent(String continent) {
+		this.continent = continent;
+	}
+
+	@Override
+	public String getKeywordSuggestions(String partialQuery) {
+		
+		String result = "";
+		
+		HttpSolrServer solrServer = new HttpSolrServer(Constants.SOLR_BASE_URL + Constants.CORE);
+		SolrQuery solrQuery = new SolrQuery();
+		solrQuery.set("qt", "/suggest");
+		solrQuery.set("q", partialQuery);
+		
+		QueryResponse queryResponse;
+		try {
+			queryResponse = solrServer.query(solrQuery);
+			SpellCheckResponse suggestions = queryResponse.getSpellCheckResponse();
+			
+			result = suggestions.getCollatedResult();
+		} catch (SolrServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<List<String>> moreLikeThis(String docID) {
+		// TODO Auto-generated method stub
+		
+		List<List<String>> result = new ArrayList<List<String>>();
+		
+		HttpSolrServer solrServer = new HttpSolrServer(Constants.SOLR_BASE_URL + Constants.CORE);
+		SolrQuery solrQuery = new SolrQuery();
+		
+		solrQuery.set("qt", "/mlt"); // registered mlt handler
+		solrQuery.set("q", "id:" + docID);
+		solrQuery.set("mlt.fl", "text");
+		solrQuery.set("mlt.mindf", "1");
+		solrQuery.set("mintf", "1");
+		/*solrQuery.set("hl", Boolean.TRUE);
+		solrQuery.set("hl.fl", "htmltext");*/
+		solrQuery.setRows(5);
+		
+		QueryResponse queryResponse;
+		
+		try {
+			queryResponse = solrServer.query(solrQuery);
+			System.out.println(queryResponse.getResults().size() + "/" + queryResponse.getResults().get(1).getFieldValue("title"));
+			SolrDocumentList solrDocument = queryResponse.getResults();
+			// Map<String, Map<String, List<String>>> highlightingResultsMap = queryResponse.getHighlighting();
+			
+			
+			for (SolrDocument mltDoc : solrDocument) {
+				List<String> mltTempDoc = new ArrayList<String>();
+				mltTempDoc.add(String.valueOf(mltDoc.getFieldValue("title")));
+				System.out.println(mltDoc.getFieldValue("title"));
+			/*	for (String field : highlightingResultsMap.get(solrDocument).keySet()) {
+					List<String> highlightedPart = highlightingResultsMap.get(docId).get(field);
+					// System.out.println("*********************");
+					String highlightedText = "";
+					for (String text : highlightedPart) {
+						highlightedText = highlightedText + text;
+					}
+					
+					highlightedText = highlightedText.replaceAll("[\\s]+", " ");
+					// System.out.println(highlightedText);
+					document.add(highlightedText);
+				}
+				*/
+				result.add(mltTempDoc);
+			}
+		} catch (SolrServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (List<String> list : result) {
+			System.out.println(list.get(0));
+		}
+		
+		return result;
+	}
+}

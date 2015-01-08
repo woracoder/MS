@@ -1,0 +1,33 @@
+<dataConfig>
+        <dataSource type="FileDataSource" encoding="UTF-8" />
+        <document>
+        <entity name="page"
+                processor="XPathEntityProcessor"
+                stream="true"
+                forEach="/wikinews/page/"
+                url="D:\Course Materials\Information Retrieval\Project 3\solr-4.5.1\solr-4.5.1\example\solr\p3_core\Dump\finalIndexableDump.xml"
+                transformer="RegexTransformer,DateFormatTransformer,HTMLStripTransformer"
+                >
+            <field column="id"        xpath="/wikinews/page/id" />
+            <field column="title"     xpath="/wikinews/page/title" />
+            <!--<field column="revision"  xpath="/mediawiki/page/revision/id" /> -->
+            <!--<field column="user"      xpath="/mediawiki/page/revision/contributor/username" />-->
+            <!--<field column="userId"    xpath="/mediawiki/page/revision/contributor/id" />-->
+            <field column="text"      xpath="/wikinews/page/text" />
+			<field column="htmltext"  xpath="/wikinews/page/htmltext" stripHTML="true" />
+			<field column="location_hierarchy"      xpath="/wikinews/page/location_hierarchy" />
+			<field column="location"      xpath="/wikinews/page/location" />
+            <!-- <field column="timestamp" xpath="/wikinews/page/timestamp" dateTimeFormat="yyyy-MM-dd'T'hh:mm:ss'Z'" /> -->
+			<field column="timestamp" xpath="/wikinews/page/timestamp" dateTimeFormat="MMM dd, yyyy" /> 
+			<field column="city_location" xpath="/wikinews/page/city_location" />
+			<field column="county_location" xpath="/wikinews/page/county_location"/>			
+			<field column="state_location" xpath="/wikinews/page/state_location"/>
+			<field column="country_location" xpath="/wikinews/page/country_location"/>
+			<field column="continent_location" xpath="/wikinews/page/continent_location"/>
+			<field column="earth_location" xpath="/wikinews/page/earth_location"/>
+			<field column="$skipDoc"  regex="^#REDIRECT .*" replaceWith="true" sourceColName="text"/>
+			
+       </entity>
+	
+        </document>
+</dataConfig>

@@ -1,0 +1,15 @@
+Total time required in seconds = 0.013040 for sorting 100000 numbers.
+Total time required in seconds = 0.144389 for sorting 1000000 numbers.
+Total time required in seconds = 0.283020 for sorting 2000000 numbers.
+Total time required in seconds = 0.414413 for sorting 3000000 numbers.
+Total time required in seconds = 0.561069 for sorting 4000000 numbers.
+Total time required in seconds = 0.688275 for sorting 5000000 numbers.
+Total time required in seconds = 0.818777 for sorting 6000000 numbers.
+Total time required in seconds = 1.004261 for sorting 7000000 numbers.
+Total time required in seconds = 1.112210 for sorting 8000000 numbers.
+Total time required in seconds = 1.170864 for sorting 9000000 numbers.
+Total time required in seconds = 1.422445 for sorting 10000000 numbers.
+Total time required in seconds = 1.469181 for sorting 11000000 numbers.
+Total time required in seconds = 1.599309 for sorting 12000000 numbers.
+Total time required in seconds = 1.728635 for sorting 13000000 numbers.
+Total time required in seconds = 1.875732 for sorting 14000000 numbers.

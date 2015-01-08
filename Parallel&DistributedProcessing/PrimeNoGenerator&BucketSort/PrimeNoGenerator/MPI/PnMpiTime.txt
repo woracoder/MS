@@ -1,0 +1,170 @@
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 2 nodes = 0.004428 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 2 nodes = 0.100856 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 2 nodes = 0.265411 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 2 nodes = 0.471010 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 2 nodes = 0.706093 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 2 nodes = 0.968080 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 2 nodes = 1.252266 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 2 nodes = 1.555501 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 2 nodes = 1.876754 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 2 nodes = 2.217520 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 2 nodes = 2.575186 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 2 nodes = 2.947175 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 2 nodes = 3.334966 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 2 nodes = 3.734739 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 2 nodes = 4.147409 secs
+
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 3 nodes = 0.004548 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 3 nodes = 0.099090 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 3 nodes = 0.262661 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 3 nodes = 0.466688 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 3 nodes = 0.700490 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 3 nodes = 0.960865 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 3 nodes = 1.243213 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 3 nodes = 1.545381 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 3 nodes = 1.865590 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 3 nodes = 2.205443 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 3 nodes = 2.560519 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 3 nodes = 2.931583 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 3 nodes = 3.317032 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 3 nodes = 3.715977 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 3 nodes = 4.126647 secs
+
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 4 nodes = 0.002429 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 4 nodes = 0.051793 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 4 nodes = 0.135576 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 4 nodes = 0.239579 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 4 nodes = 0.358589 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 4 nodes = 0.491339 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 4 nodes = 0.634842 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 4 nodes = 0.788139 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 4 nodes = 0.950692 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 4 nodes = 1.122323 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 4 nodes = 1.302758 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 4 nodes = 1.490845 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 4 nodes = 1.685912 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 4 nodes = 1.887449 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 4 nodes = 2.094980 secs
+
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 5 nodes = 0.006805 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 5 nodes = 0.051623 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 5 nodes = 0.135502 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 5 nodes = 0.266782 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 5 nodes = 0.358003 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 5 nodes = 0.502530 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 5 nodes = 0.633839 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 5 nodes = 0.798671 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 5 nodes = 0.948928 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 5 nodes = 1.121053 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 5 nodes = 1.298443 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 5 nodes = 1.515238 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 5 nodes = 1.680956 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 5 nodes = 1.882551 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 5 nodes = 2.115190 secs
+
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 10 nodes = 0.005376 secs
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 8 nodes = 0.001536 secs
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 11 nodes = 0.001482 secs
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 7 nodes = 0.001844 secs
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 9 nodes = 0.005580 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 10 nodes = 0.027667 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 8 nodes = 0.027562 secs
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 6 nodes = 0.002504 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 7 nodes = 0.040912 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 11 nodes = 0.023426 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 9 nodes = 0.035405 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 8 nodes = 0.072937 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 10 nodes = 0.071369 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 6 nodes = 0.051388 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 7 nodes = 0.097543 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 11 nodes = 0.063089 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 8 nodes = 0.126030 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 9 nodes = 0.093574 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 6 nodes = 0.134799 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 10 nodes = 0.130421 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 7 nodes = 0.168223 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 9 nodes = 0.162497 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 10 nodes = 0.185966 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 7 nodes = 0.247744 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 7 nodes = 0.330763 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 10 nodes = 0.259363 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 7 nodes = 0.430330 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 10 nodes = 0.353760 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 7 nodes = 0.530013 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 10 nodes = 0.414620 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 7 nodes = 0.639023 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 10 nodes = 0.497450 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 7 nodes = 0.754112 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 10 nodes = 0.578793 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 7 nodes = 0.878284 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 10 nodes = 0.806475 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 11 nodes = 0.109012 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 6 nodes = 0.241955 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 8 nodes = 0.186489 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 7 nodes = 1.008164 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 6 nodes = 0.356078 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 11 nodes = 0.199170 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 10 nodes = 0.772160 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 8 nodes = 0.256564 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 6 nodes = 0.489290 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 8 nodes = 0.326623 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 11 nodes = 0.403191 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 7 nodes = 1.141022 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 10 nodes = 0.875837 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 8 nodes = 0.408357 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 6 nodes = 0.636627 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 11 nodes = 0.274246 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 9 nodes = 0.244565 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 8 nodes = 0.489437 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 11 nodes = 0.332896 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 7 nodes = 1.278288 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 6 nodes = 0.783931 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 9 nodes = 0.331738 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 8 nodes = 0.592013 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 9 nodes = 0.428666 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 11 nodes = 0.560318 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 6 nodes = 0.946367 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 9 nodes = 0.531990 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 8 nodes = 0.670449 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 7 nodes = 1.418950 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 11 nodes = 0.488594 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 6 nodes = 1.133748 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 9 nodes = 0.642925 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 8 nodes = 0.766729 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 11 nodes = 0.566012 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 9 nodes = 0.757761 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 8 nodes = 0.862213 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 6 nodes = 1.312162 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 11 nodes = 0.643564 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 9 nodes = 0.884595 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 11 nodes = 0.703608 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 8 nodes = 0.968011 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 10 nodes = 0.968922 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 9 nodes = 1.004359 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 11 nodes = 0.788902 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 10 nodes = 1.085190 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 11 nodes = 0.885593 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 9 nodes = 1.142509 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 9 nodes = 1.265313 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 6 nodes = 1.515209 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 9 nodes = 1.421337 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 6 nodes = 1.695004 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 8 nodes = 1.069477 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 6 nodes = 1.920912 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 6 nodes = 2.086190 secs
+
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers using MPI on 2 nodes and 4 cores = 0.001497 secs
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers using MPI on 2 nodes and 4 cores = 0.028093 secs
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers using MPI on 2 nodes and 4 cores = 0.072718 secs
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers using MPI on 2 nodes and 4 cores = 0.127170 secs
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers using MPI on 2 nodes and 4 cores = 0.190943 secs
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers using MPI on 2 nodes and 4 cores = 0.259738 secs
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers using MPI on 2 nodes and 4 cores = 0.334043 secs
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers using MPI on 2 nodes and 4 cores = 0.412618 secs
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers using MPI on 2 nodes and 4 cores = 0.494990 secs
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers using MPI on 2 nodes and 4 cores = 0.575216 secs
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers using MPI on 2 nodes and 4 cores = 0.686671 secs
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers using MPI on 2 nodes and 4 cores = 0.774893 secs
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers using MPI on 2 nodes and 4 cores = 0.868986 secs
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers using MPI on 2 nodes and 4 cores = 0.992474 secs
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers using MPI on 2 nodes and 4 cores = 1.078870 secs

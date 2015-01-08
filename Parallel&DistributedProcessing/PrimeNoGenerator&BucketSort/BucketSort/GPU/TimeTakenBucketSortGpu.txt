@@ -1,0 +1,15 @@
+Total time required in seconds = 0.855584 for sorting 100000 numbers using GPU.
+Total time required in seconds = 7.059330 for sorting 1000000 numbers using GPU.
+Total time required in seconds = 14.061986 for sorting 2000000 numbers using GPU.
+Total time required in seconds = 20.783300 for sorting 3000000 numbers using GPU.
+Total time required in seconds = 27.553658 for sorting 4000000 numbers using GPU.
+Total time required in seconds = 33.416768 for sorting 5000000 numbers using GPU.
+Total time required in seconds = 39.892031 for sorting 6000000 numbers using GPU.
+Total time required in seconds = 46.279404 for sorting 7000000 numbers using GPU.
+Total time required in seconds = 52.632618 for sorting 8000000 numbers using GPU.
+Total time required in seconds = 54.631430 for sorting 9000000 numbers using GPU.
+Total time required in seconds = 60.212589 for sorting 10000000 numbers using GPU.
+Total time required in seconds = 65.750275 for sorting 11000000 numbers using GPU.
+Total time required in seconds = 71.129214 for sorting 12000000 numbers using GPU.
+Total time required in seconds = 76.482188 for sorting 13000000 numbers using GPU.
+Total time required in seconds = 81.636937 for sorting 14000000 numbers using GPU.

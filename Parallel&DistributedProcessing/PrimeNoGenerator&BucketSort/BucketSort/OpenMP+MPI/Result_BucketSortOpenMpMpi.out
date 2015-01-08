@@ -1,0 +1,43 @@
+SLURM Environment Variables:
+Job ID = 2946315
+Job Name = BucketSortOpenMpMpi
+Job Node List = d07n33s01,d16n02
+Number of Nodes = 2
+Tasks per Nodes = 1
+CPUs per task = 4
+/scratch/jobid = /scratch/2946315
+submit Host = k07n14
+Submit Directory = /ifs/user/srao2/PDP/assignments/assignment2/OpenMP+MPI
+
+Currently Loaded Modulefiles:
+  1) null              3) intel/13.1
+  2) modules           4) intel-mpi/5.0.1
+Total time required on 2 nodes and 6 cores in seconds = 0.008947 for sorting 100000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 0.086214 for sorting 1000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 0.989012 for sorting 10000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 0.903865 for sorting 10000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 4.0822 for sorting 30000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 3.79494 for sorting 30000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 6.51559 for sorting 50000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 5.70548 for sorting 50000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 11.5326 for sorting 80000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 10.1279 for sorting 80000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 13.677 for sorting 100000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 12.0033 for sorting 100000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 18.8496 for sorting 130000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 16.6666 for sorting 130000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 23.4504 for sorting 150000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 21.8705 for sorting 150000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 25.6619 for sorting 180000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 29.3216 for sorting 200000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 31.4259 for sorting 200000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 27.7248 for sorting 220000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 31.4861 for sorting 220000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 31.528 for sorting 250000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 35.864 for sorting 250000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 43.1642 for sorting 300000000 numbers.
+Total time required on 2 nodes and 4 cores in seconds = 46.3991 for sorting 300000000 numbers.
+Total time required on 2 nodes and 6 cores in seconds = 50.629 for sorting 350000000 numbers.
+All Done!
+Total time required on 2 nodes and 4 cores in seconds = 54.2352 for sorting 350000000 numbers.
+All Done!

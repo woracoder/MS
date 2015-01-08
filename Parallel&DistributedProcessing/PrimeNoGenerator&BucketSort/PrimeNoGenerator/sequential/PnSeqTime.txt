@@ -1,0 +1,15 @@
+Maximum prime number = 99991. Number of primes generated = 9592. Total time taken for 100000 numbers sequentially = 0.006497 seconds.
+Maximum prime number = 999983. Number of primes generated = 78498. Total time taken for 1000000 numbers sequentially = 0.154996 seconds.
+Maximum prime number = 1999993. Number of primes generated = 148933. Total time taken for 2000000 numbers sequentially = 0.412823 seconds.
+Maximum prime number = 2999999. Number of primes generated = 216816. Total time taken for 3000000 numbers sequentially = 0.734767 seconds.
+Maximum prime number = 3999971. Number of primes generated = 283146. Total time taken for 4000000 numbers sequentially = 1.104296 seconds.
+Maximum prime number = 4999999. Number of primes generated = 348513. Total time taken for 5000000 numbers sequentially = 1.516440 seconds.
+Maximum prime number = 5999993. Number of primes generated = 412849. Total time taken for 6000000 numbers sequentially = 1.963644 seconds.
+Maximum prime number = 6999997. Number of primes generated = 476648. Total time taken for 7000000 numbers sequentially = 2.475228 seconds.
+Maximum prime number = 7999993. Number of primes generated = 539777. Total time taken for 8000000 numbers sequentially = 2.951266 seconds.
+Maximum prime number = 8999993. Number of primes generated = 602489. Total time taken for 9000000 numbers sequentially = 3.489531 seconds.
+Maximum prime number = 9999991. Number of primes generated = 664579. Total time taken for 10000000 numbers sequentially = 4.053861 seconds.
+Maximum prime number = 10999997. Number of primes generated = 726517. Total time taken for 11000000 numbers sequentially = 4.643245 seconds.
+Maximum prime number = 11999989. Number of primes generated = 788060. Total time taken for 12000000 numbers sequentially = 5.254759 seconds.
+Maximum prime number = 12999997. Number of primes generated = 849252. Total time taken for 13000000 numbers sequentially = 5.887312 seconds.
+Maximum prime number = 13999981. Number of primes generated = 910077. Total time taken for 14000000 numbers sequentially = 6.540038 seconds.

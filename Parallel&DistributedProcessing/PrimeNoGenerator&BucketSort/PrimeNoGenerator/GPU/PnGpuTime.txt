@@ -1,0 +1,15 @@
+Maximum prime number = 99991 Total time taken using GPU for input size 100000 to generate 9592 prime numbers = 0.000553 secs
+Maximum prime number = 999983 Total time taken using GPU for input size 1000000 to generate 78498 prime numbers = 0.010671 secs
+Maximum prime number = 1999993 Total time taken using GPU for input size 2000000 to generate 148933 prime numbers = 0.029122 secs
+Maximum prime number = 2999999 Total time taken using GPU for input size 3000000 to generate 216816 prime numbers = 0.052775 secs
+Maximum prime number = 3999971 Total time taken using GPU for input size 4000000 to generate 283146 prime numbers = 0.080786 secs
+Maximum prime number = 4999999 Total time taken using GPU for input size 5000000 to generate 348513 prime numbers = 0.112338 secs
+Maximum prime number = 5999993 Total time taken using GPU for input size 6000000 to generate 412849 prime numbers = 0.147112 secs
+Maximum prime number = 6999997 Total time taken using GPU for input size 7000000 to generate 476648 prime numbers = 0.184892 secs
+Maximum prime number = 7999993 Total time taken using GPU for input size 8000000 to generate 539777 prime numbers = 0.225368 secs
+Maximum prime number = 8999993 Total time taken using GPU for input size 9000000 to generate 602489 prime numbers = 0.268572 secs
+Maximum prime number = 9999991 Total time taken using GPU for input size 10000000 to generate 664579 prime numbers = 0.314154 secs
+Maximum prime number = 10999997 Total time taken using GPU for input size 11000000 to generate 726517 prime numbers = 0.362019 secs
+Maximum prime number = 11999989 Total time taken using GPU for input size 12000000 to generate 788060 prime numbers = 0.412072 secs
+Maximum prime number = 12999997 Total time taken using GPU for input size 13000000 to generate 849252 prime numbers = 0.464229 secs
+Maximum prime number = 13999981 Total time taken using GPU for input size 14000000 to generate 910077 prime numbers = 0.518409 secs
